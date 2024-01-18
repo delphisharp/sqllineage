@@ -25,6 +25,11 @@ class _SQLLineageConfigLoader:
                 "additional": None,
                 "default": False,
             },
+            "CASE_TYPE": {
+                "class_type": str,
+                "additional": None,
+                "default": "lower",
+            },   
         }
 
         self._PREFIX = "SQLLINEAGE_"

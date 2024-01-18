@@ -2,6 +2,8 @@ import logging
 from argparse import Namespace
 from typing import List
 
+from sqllineage.config import SQLLineageConfig
+
 logger = logging.getLogger(__name__)
 
 
@@ -18,7 +20,12 @@ def escape_identifier_name(name: str):
             name = name.strip(quote_char)
         return name
     else:
-        return name.lower()
+        if SQLLineageConfig.CASE_TYPE == "upper":
+            return name.upper()
+        elif SQLLineageConfig.CASE_TYPE == "nochange":
+            return name
+        else:
+            return name.lower()
 
 
 def extract_sql_from_args(args: Namespace) -> str:
